@@ -7,24 +7,27 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ApiResource]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private $id;
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private string $user_name;
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    private $username;
 
-    #[ORM\Column(type: 'string', nullable: false)]
-    private string $password;
+    #[ORM\Column(type: 'json')]
+    private $roles = [];
 
-    /** association */
+    #[ORM\Column(type: 'string')]
+    private $password;
 
     #[ORM\ManyToMany(targetEntity: Program::class, inversedBy: 'users')]
     private $program;
@@ -55,32 +58,59 @@ class User
     }
 
     /**
-     * @param int $id
-     * @return void
+     * @return string|null
      */
-    public function setId(int $id): void
+    public function getUsername(): ?string
     {
-        $this->id = $id;
+        return $this->username;
     }
 
     /**
-     * @return string
+     * @param string $username
+     * @return $this
      */
-    public function getUserName(): string
+    public function setUsername(string $username): self
     {
-        return $this->user_name;
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
-     * @param string $user_name
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
      */
-    public function setUserName(string $user_name): void
+    public function getUserIdentifier(): string
     {
-        $this->user_name = $user_name;
+        return (string) $this->username;
     }
 
     /**
-     * @return string
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @param array $roles
+     * @return $this
+     */
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string
     {
@@ -89,10 +119,22 @@ class User
 
     /**
      * @param string $password
+     * @return $this
      */
-    public function setPassword(string $password): void
+    public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     /**
@@ -167,6 +209,10 @@ class User
         return $this->disciplines;
     }
 
+    /**
+     * @param Disciplines $discipline
+     * @return $this
+     */
     public function addDiscipline(Disciplines $discipline): self
     {
         if (!$this->disciplines->contains($discipline)) {
@@ -176,6 +222,10 @@ class User
         return $this;
     }
 
+    /**
+     * @param Disciplines $discipline
+     * @return $this
+     */
     public function removeDiscipline(Disciplines $discipline): self
     {
         $this->disciplines->removeElement($discipline);
@@ -191,6 +241,10 @@ class User
         return $this->module;
     }
 
+    /**
+     * @param Module $module
+     * @return $this
+     */
     public function addModule(Module $module): self
     {
         if (!$this->module->contains($module)) {
@@ -200,11 +254,14 @@ class User
         return $this;
     }
 
+    /**
+     * @param Module $module
+     * @return $this
+     */
     public function removeModule(Module $module): self
     {
         $this->module->removeElement($module);
 
         return $this;
     }
-
 }

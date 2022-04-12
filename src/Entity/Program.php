@@ -23,10 +23,14 @@ class Program
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'program')]
     private $users;
 
+    #[ORM\ManyToMany(targetEntity: AcademicPlan::class, inversedBy: 'programs')]
+    private $academic_plan;
+
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->academic_plan = new ArrayCollection();
     }
 
     /**
@@ -87,6 +91,30 @@ class Program
         if ($this->users->removeElement($user)) {
             $user->removeProgram($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AcademicPlan>
+     */
+    public function getAcademicPlan(): Collection
+    {
+        return $this->academic_plan;
+    }
+
+    public function addAcademicPlan(AcademicPlan $academicPlan): self
+    {
+        if (!$this->academic_plan->contains($academicPlan)) {
+            $this->academic_plan[] = $academicPlan;
+        }
+
+        return $this;
+    }
+
+    public function removeAcademicPlan(AcademicPlan $academicPlan): self
+    {
+        $this->academic_plan->removeElement($academicPlan);
 
         return $this;
     }

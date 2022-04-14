@@ -20,7 +20,6 @@ class AcademicPlan
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->programs = new ArrayCollection();
     }
 
@@ -55,5 +54,4 @@ class AcademicPlan
 
         return $this;
     }
-
 }

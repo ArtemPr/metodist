@@ -23,9 +23,6 @@ class TrainingCenters
         $this->users = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
@@ -40,7 +37,6 @@ class TrainingCenters
     }
 
     /**
-     * @param User $user
      * @return $this
      */
     public function addUser(User $user): self
@@ -54,7 +50,6 @@ class TrainingCenters
     }
 
     /**
-     * @param User $user
      * @return $this
      */
     public function removeUser(User $user): self
@@ -65,5 +60,4 @@ class TrainingCenters
 
         return $this;
     }
-
 }

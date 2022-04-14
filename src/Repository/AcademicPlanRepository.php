@@ -4,8 +4,6 @@ namespace App\Repository;
 
 use App\Entity\AcademicPlan;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,10 +19,6 @@ class AcademicPlanRepository extends ServiceEntityRepository
         parent::__construct($registry, AcademicPlan::class);
     }
 
-    /**
-     * @param AcademicPlan $entity
-     * @param bool $flush
-     */
     public function add(AcademicPlan $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
@@ -33,10 +27,6 @@ class AcademicPlanRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @param AcademicPlan $entity
-     * @param bool $flush
-     */
     public function remove(AcademicPlan $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);

@@ -26,24 +26,17 @@ class Disciplines
         $this->users = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDisciplinesName(): ?string
     {
         return $this->disciplines_name;
     }
 
     /**
-     * @param string $disciplines_name
      * @return $this
      */
     public function setDisciplinesName(string $disciplines_name): self
@@ -62,7 +55,6 @@ class Disciplines
     }
 
     /**
-     * @param User $user
      * @return $this
      */
     public function addUser(User $user): self
@@ -76,7 +68,6 @@ class Disciplines
     }
 
     /**
-     * @param User $user
      * @return $this
      */
     public function removeUser(User $user): self

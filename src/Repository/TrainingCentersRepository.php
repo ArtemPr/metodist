@@ -4,8 +4,6 @@ namespace App\Repository;
 
 use App\Entity\TrainingCenters;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,10 +19,6 @@ class TrainingCentersRepository extends ServiceEntityRepository
         parent::__construct($registry, TrainingCenters::class);
     }
 
-    /**
-     * @param TrainingCenters $entity
-     * @param bool $flush
-     */
     public function add(TrainingCenters $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
@@ -33,10 +27,6 @@ class TrainingCentersRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @param TrainingCenters $entity
-     * @param bool $flush
-     */
     public function remove(TrainingCenters $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);

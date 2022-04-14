@@ -28,24 +28,17 @@ class Module
         $this->users = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getModuleName(): ?string
     {
         return $this->module_name;
     }
 
     /**
-     * @param string $module_name
      * @return $this
      */
     public function setModuleName(string $module_name): self

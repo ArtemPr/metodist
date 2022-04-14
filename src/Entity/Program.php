@@ -26,31 +26,27 @@ class Program
     #[ORM\ManyToMany(targetEntity: AcademicPlan::class, inversedBy: 'programs')]
     private $academic_plan;
 
+    #[ORM\ManyToMany(targetEntity: Literature::class, inversedBy: 'programs')]
+    private $literature;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->academic_plan = new ArrayCollection();
+        $this->literature = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProgramName(): ?string
     {
         return $this->program_name;
     }
 
     /**
-     * @param string $program_name
      * @return $this
      */
     public function setProgramName(string $program_name): self
@@ -69,7 +65,6 @@ class Program
     }
 
     /**
-     * @param User $user
      * @return $this
      */
     public function addUser(User $user): self
@@ -83,7 +78,6 @@ class Program
     }
 
     /**
-     * @param User $user
      * @return $this
      */
     public function removeUser(User $user): self
@@ -103,6 +97,9 @@ class Program
         return $this->academic_plan;
     }
 
+    /**
+     * @return $this
+     */
     public function addAcademicPlan(AcademicPlan $academicPlan): self
     {
         if (!$this->academic_plan->contains($academicPlan)) {
@@ -112,9 +109,36 @@ class Program
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function removeAcademicPlan(AcademicPlan $academicPlan): self
     {
         $this->academic_plan->removeElement($academicPlan);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Literature>
+     */
+    public function getLiterature(): Collection
+    {
+        return $this->literature;
+    }
+
+    public function addLiterature(Literature $literature): self
+    {
+        if (!$this->literature->contains($literature)) {
+            $this->literature[] = $literature;
+        }
+
+        return $this;
+    }
+
+    public function removeLiterature(Literature $literature): self
+    {
+        $this->literature->removeElement($literature);
 
         return $this;
     }

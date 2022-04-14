@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -49,24 +49,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->module = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
     /**
-     * @param string $username
      * @return $this
      */
     public function setUsername(string $username): self
@@ -99,7 +92,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param array $roles
      * @return $this
      */
     public function setRoles(array $roles): self
@@ -118,7 +110,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param string $password
      * @return $this
      */
     public function setPassword(string $password): self
@@ -146,7 +137,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param Program $program
      * @return $this
      */
     public function addProgram(Program $program): self
@@ -159,7 +149,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param Program $program
      * @return $this
      */
     public function removeProgram(Program $program): self
@@ -178,7 +167,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param TrainingCenters $trainingCenter
      * @return $this
      */
     public function addTrainingCenter(TrainingCenters $trainingCenter): self
@@ -191,7 +179,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param TrainingCenters $trainingCenter
      * @return $this
      */
     public function removeTrainingCenter(TrainingCenters $trainingCenter): self
@@ -210,7 +197,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param Disciplines $discipline
      * @return $this
      */
     public function addDiscipline(Disciplines $discipline): self
@@ -223,7 +209,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param Disciplines $discipline
      * @return $this
      */
     public function removeDiscipline(Disciplines $discipline): self
@@ -242,7 +227,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param Module $module
      * @return $this
      */
     public function addModule(Module $module): self
@@ -255,7 +239,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @param Module $module
      * @return $this
      */
     public function removeModule(Module $module): self

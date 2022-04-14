@@ -22,8 +22,8 @@ class AcademicPlanRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @param AcademicPlan $entity
+     * @param bool $flush
      */
     public function add(AcademicPlan $entity, bool $flush = true): void
     {
@@ -34,8 +34,8 @@ class AcademicPlanRepository extends ServiceEntityRepository
     }
 
     /**
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @param AcademicPlan $entity
+     * @param bool $flush
      */
     public function remove(AcademicPlan $entity, bool $flush = true): void
     {
@@ -44,33 +44,4 @@ class AcademicPlanRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-
-    // /**
-    //  * @return AcademicPlan[] Returns an array of AcademicPlan objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?AcademicPlan
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

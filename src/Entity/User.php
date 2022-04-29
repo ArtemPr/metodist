@@ -41,6 +41,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Module::class, inversedBy: 'users')]
     private $module;
 
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private $email;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $name;
+
     public function __construct()
     {
         $this->training_centers = new ArrayCollection();
@@ -56,7 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUsername(): ?string
     {
-        return $this->username;
+        return $this->email;
     }
 
     /**
@@ -64,6 +70,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function setUsername(string $username): self
     {
+        $this->email = $username;
         $this->username = $username;
 
         return $this;
@@ -117,6 +124,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @param string $param
+     * @return string
+     */
+    public function __get(string $param)
+    {
+        if (!empty($param) && $param == 'passwordNew') {
+            return '';
+        }
+    }
+
+    /**
+     * @param string $param
+     * @param $value
+     */
+    public function __set(string $param, $value)
+    {
+        if (!empty($param) && $param == 'passwordNew' && !empty($value)) {
+            $this->password = password_hash($value, PASSWORD_DEFAULT);
+        }
     }
 
     /**
@@ -244,6 +273,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeModule(Module $module): self
     {
         $this->module->removeElement($module);
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

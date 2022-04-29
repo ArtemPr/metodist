@@ -1,0 +1,17 @@
+
+<div class="top_menu">
+    {% if app.user.username|default(false) == false%}
+        <a href="{{ path('app_login') }}">Войти</a>
+    {% else %}
+        <a href="{{ path('app_main') }}">Главная страница</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="{{ path('app_cabinet') }}">Перейти в кабинет</a>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        {% if "ROLE_ADMIN" in  app.user.roles %}
+            <a href="{{ path('admin') }}">Переход в административную панель</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+        {% endif %}
+        <span style="font-size: 12px;">вы вошли как <b style="color: #ffdf7e;">{{ app.user.name }}</b></span>
+        &nbsp;&nbsp;<a href="{{ path('app_logout') }}">Выйти</a>
+    {% endif %}
+</div>

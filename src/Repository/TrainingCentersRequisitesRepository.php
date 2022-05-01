@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\TraningCentersRequisites;
+use App\Entity\TrainingCentersRequisites;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method TraningCentersRequisites|null find($id, $lockMode = null, $lockVersion = null)
- * @method TraningCentersRequisites|null findOneBy(array $criteria, array $orderBy = null)
- * @method TraningCentersRequisites[]    findAll()
- * @method TraningCentersRequisites[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TrainingCentersRequisites|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TrainingCentersRequisites|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TrainingCentersRequisites[]    findAll()
+ * @method TrainingCentersRequisites[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TraningCentersRequisitesRepository extends ServiceEntityRepository
+class TrainingCentersRequisitesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TraningCentersRequisites::class);
+        parent::__construct($registry, TrainingCentersRequisites::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(TraningCentersRequisites $entity, bool $flush = true): void
+    public function add(TrainingCentersRequisites $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class TraningCentersRequisitesRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(TraningCentersRequisites $entity, bool $flush = true): void
+    public function remove(TrainingCentersRequisites $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,7 +46,7 @@ class TraningCentersRequisitesRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return TraningCentersRequisites[] Returns an array of TraningCentersRequisites objects
+    //  * @return TrainingCentersRequisites[] Returns an array of TrainingCentersRequisites objects
     //  */
     /*
     public function findByExampleField($value)
@@ -63,7 +63,7 @@ class TraningCentersRequisitesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?TraningCentersRequisites
+    public function findOneBySomeField($value): ?TrainingCentersRequisites
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

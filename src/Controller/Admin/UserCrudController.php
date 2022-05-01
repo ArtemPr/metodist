@@ -8,8 +8,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -21,9 +21,9 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', "Список администраторов")
-            ->setPageTitle("edit", 'Редактирование администратора')
-            ->setPageTitle('new', "Создать администратора")
+            ->setPageTitle('index', 'Список администраторов')
+            ->setPageTitle('edit', 'Редактирование администратора')
+            ->setPageTitle('new', 'Создать администратора')
             ->setDefaultSort(['name' => 'DESC'])
             ->setPaginatorPageSize(30)
             ->showEntityActionsInlined();
@@ -50,10 +50,6 @@ class UserCrudController extends AbstractCrudController
         yield FormField::addTab('Привилегии');
     }
 
-    /**
-     * @param Actions $actions
-     * @return Actions
-     */
     public function configureActions(Actions $actions): Actions
     {
         return $actions

@@ -18,9 +18,19 @@ class TrainingCenters
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'training_centers')]
     private $users;
 
+    #[ORM\ManyToMany(targetEntity: TrainingCentersRequisites::class, inversedBy: 'trainingCenters', cascade: ['persist'])]
+    private $requisites;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $active = false;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->requisites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -57,6 +67,54 @@ class TrainingCenters
         if ($this->users->removeElement($user)) {
             $user->removeTrainingCenter($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TrainingCentersRequisites>
+     */
+    public function getRequisites(): Collection
+    {
+        return $this->requisites;
+    }
+
+    public function addRequisite(TrainingCentersRequisites $requisite): self
+    {
+        if (!$this->requisites->contains($requisite)) {
+            $this->requisites[] = $requisite;
+        }
+
+        return $this;
+    }
+
+    public function removeRequisite(TrainingCentersRequisites $requisite): self
+    {
+        $this->requisites->removeElement($requisite);
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

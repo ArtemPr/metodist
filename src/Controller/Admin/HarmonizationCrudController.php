@@ -19,9 +19,9 @@ class HarmonizationCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', "Список цепочек согласования")
-            ->setPageTitle("edit", 'Редактирование цепочки')
-            ->setPageTitle('new', "Создать цепочку")
+            ->setPageTitle('index', 'Список цепочек согласования')
+            ->setPageTitle('edit', 'Редактирование цепочки')
+            ->setPageTitle('new', 'Создать цепочку')
             ->setDefaultSort(['name' => 'DESC'])
             ->setPaginatorPageSize(30)
             ->showEntityActionsInlined();
@@ -32,10 +32,6 @@ class HarmonizationCrudController extends AbstractCrudController
         yield TextField::new('name', 'Название');
     }
 
-    /**
-     * @param Actions $actions
-     * @return Actions
-     */
     public function configureActions(Actions $actions): Actions
     {
         return $actions

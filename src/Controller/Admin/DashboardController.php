@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\ApiUser;
 use App\Entity\Harmonization;
+use App\Entity\TrainingCenters;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -37,6 +38,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Согласования', 'fa fa-link', Harmonization::class);
         yield MenuItem::linkToCrud('Администраторы', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('API пользователи', 'fa fa-user', ApiUser::class);
+        yield MenuItem::linkToCrud('Учебные центры', 'fa fa-university', TrainingCenters::class);
         yield MenuItem::section(' ');
         yield MenuItem::linkToRoute('Кабинет', 'fa fa-file', 'app_cabinet');
     }

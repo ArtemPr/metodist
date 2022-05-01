@@ -126,24 +126,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @param string $param
-     * @return string
-     */
-    public function __get(string $param)
+    public function __get(string $param): string
     {
-        if (!empty($param) && $param == 'passwordNew') {
-            return '';
-        }
+        return '';
     }
 
     /**
-     * @param string $param
      * @param $value
      */
     public function __set(string $param, $value)
     {
-        if (!empty($param) && $param == 'passwordNew' && !empty($value)) {
+        if (!empty($param) && 'passwordNew' == $param && !empty($value)) {
             $this->password = password_hash($value, PASSWORD_DEFAULT);
         }
     }

@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ApiUser;
-use Couchbase\SearchSortField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -21,9 +20,9 @@ class ApiUserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', "Список API пользователей")
-            ->setPageTitle("edit", 'Редактирование API пользователя')
-            ->setPageTitle('new', "Создать  API пользователя")
+            ->setPageTitle('index', 'Список API пользователей')
+            ->setPageTitle('edit', 'Редактирование API пользователя')
+            ->setPageTitle('new', 'Создать  API пользователя')
             ->setDefaultSort(['name' => 'DESC'])
             ->setPaginatorPageSize(30)
             ->showEntityActionsInlined();
@@ -38,10 +37,6 @@ class ApiUserCrudController extends AbstractCrudController
         yield FormField::addTab('Привилегии');
     }
 
-    /**
-     * @param Actions $actions
-     * @return Actions
-     */
     public function configureActions(Actions $actions): Actions
     {
         return $actions

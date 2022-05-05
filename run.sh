@@ -1,6 +1,6 @@
 ## run in CI/CD
-rm -R vendor/*
-rm composer.lock
+rm -R ./vendor/*
+rm ./composer.lock
 composer install
 php bin/console make:migration
 php bin/console doctrine:migrations:migrate

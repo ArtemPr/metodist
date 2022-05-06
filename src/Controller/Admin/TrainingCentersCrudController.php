@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class TrainingCentersCrudController extends AbstractCrudController
@@ -41,6 +42,9 @@ class TrainingCentersCrudController extends AbstractCrudController
         yield TextField::new('phone', 'Контактный телефон');
         yield TextField::new('email', 'Email');
         yield TextField::new('url', 'URL адрес');
+
+        yield TextField::new('external_upload_bakalavrmagistr_id', 'ID в бакалавр-магистр');
+        yield NumberField::new('external_upload_sdo_id', 'ID в СДО');
 
 
         yield CollectionField::new('requisites')

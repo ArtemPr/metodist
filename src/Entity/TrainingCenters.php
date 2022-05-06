@@ -21,19 +21,19 @@ class TrainingCenters
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $phone;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $email;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $url;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
     private $external_upload_bakalavrmagistr_id;
 
-    #[ORM\Column(type: 'integer', length: 3)]
+    #[ORM\Column(type: 'integer', length: 3, nullable: true)]
     private $external_upload_sdo_id;
 
 

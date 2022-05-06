@@ -12,7 +12,7 @@ class CabinetController extends AbstractController
     public function index(): Response
     {
         return $this->render('cabinet/index.html.twig', [
-            'controller_name' => 'CabinetController',
+            'controller_name' => 'app_cabinet',
         ]);
     }
 }

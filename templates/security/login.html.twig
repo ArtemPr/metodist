@@ -9,9 +9,6 @@
 {% block body %}
     <div class="page page-center">
         <div class="container-tight py-4">
-            <div class="text-center mb-4">
-                <img src="{{ asset('assets/images/logo.svg') }}" height="80" alt="">
-            </div>
             <form method="post" action="{{ path('app_login') }}" class="card card-md">
                 {% if error|default(false) %}
                     <div class="alert alert-danger">Ошибка входа, пожалуйста проверьте корректность адреса электронной почты и пароля!</div>

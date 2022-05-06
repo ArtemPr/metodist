@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Metodistam.ru{% endblock %}
+{% block title %}СПРУТ 1.0{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
 
 {% block body %}
+<div class="page">
     {{ include('block/header.html.twig') }}
+</div>
 {% endblock %}

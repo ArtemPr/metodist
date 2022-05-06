@@ -38,6 +38,10 @@ class TrainingCentersCrudController extends AbstractCrudController
         yield BooleanField::new('active', 'Активный центр');
         yield TextField::new('name', 'Название учебного центра');
 
+        yield TextField::new('phone', 'Контактный телефон');
+        yield TextField::new('email', 'Email');
+        yield TextField::new('url', 'URL адрес');
+
 
         yield CollectionField::new('requisites')
             ->hideOnIndex()

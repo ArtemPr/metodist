@@ -30,8 +30,16 @@ class TrainingCenters
     #[ORM\Column(type: 'string', length: 255)]
     private $url;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    private $external_upload_bakalavrmagistr_id;
+
+    #[ORM\Column(type: 'integer', length: 3)]
+    private $external_upload_sdo_id;
+
+
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'training_centers')]
     private $users;
+
 
     #[ORM\ManyToMany(targetEntity: TrainingCentersRequisites::class, inversedBy: 'trainingCenters', cascade: ['persist'])]
     private $requisites;
@@ -163,6 +171,38 @@ class TrainingCenters
     public function setUrl($url): void
     {
         $this->url = $url;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExternalUploadBakalavrmagistrId()
+    {
+        return $this->external_upload_bakalavrmagistr_id;
+    }
+
+    /**
+     * @param mixed $external_upload_bakalavrmagistr_id
+     */
+    public function setExternalUploadBakalavrmagistrId($external_upload_bakalavrmagistr_id): void
+    {
+        $this->external_upload_bakalavrmagistr_id = $external_upload_bakalavrmagistr_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExternalUploadSdoId()
+    {
+        return $this->external_upload_sdo_id;
+    }
+
+    /**
+     * @param mixed $external_upload_sdo_id
+     */
+    public function setExternalUploadSdoId($external_upload_sdo_id): void
+    {
+        $this->external_upload_sdo_id = $external_upload_sdo_id;
     }
 
     public function getActive(): ?bool

@@ -36,6 +36,8 @@ class TrainingCenters
     #[ORM\Column(type: 'integer', length: 3, nullable: true)]
     private $external_upload_sdo_id;
 
+    #[ORM\Column(type: 'integer', length: 3, nullable: true)]
+    private $site_id;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'training_centers')]
     private $users;
@@ -203,6 +205,22 @@ class TrainingCenters
     public function setExternalUploadSdoId($external_upload_sdo_id): void
     {
         $this->external_upload_sdo_id = $external_upload_sdo_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSiteId()
+    {
+        return $this->site_id;
+    }
+
+    /**
+     * @param mixed $site_id
+     */
+    public function setSiteId($site_id): void
+    {
+        $this->site_id = $site_id;
     }
 
     public function getActive(): ?bool

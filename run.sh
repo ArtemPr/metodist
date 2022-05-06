@@ -1,5 +1,4 @@
 ## run in CI/CD
-
 rm -R ./vendor/*
 rm ./composer.lock
 composer install

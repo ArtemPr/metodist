@@ -15,17 +15,27 @@ class TrainingCenters
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $active = false;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $phone;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $email;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $url;
+
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'training_centers')]
     private $users;
 
     #[ORM\ManyToMany(targetEntity: TrainingCentersRequisites::class, inversedBy: 'trainingCenters', cascade: ['persist'])]
     private $requisites;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
-
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private $active = false;
 
     public function __construct()
     {
@@ -105,6 +115,54 @@ class TrainingCenters
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param mixed $url
+     */
+    public function setUrl($url): void
+    {
+        $this->url = $url;
     }
 
     public function getActive(): ?bool

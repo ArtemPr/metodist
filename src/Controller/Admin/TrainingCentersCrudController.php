@@ -41,12 +41,13 @@ class TrainingCentersCrudController extends AbstractCrudController
 
         yield TextField::new('phone', 'Контактный телефон');
         yield TextField::new('email', 'Email');
-        yield TextField::new('url', 'URL адрес');
+        yield TextField::new('url', 'URL адрес')->hideOnIndex();
 
-        yield TextField::new('external_upload_bakalavrmagistr_id', 'ID в бакалавр-магистр');
-        yield NumberField::new('external_upload_sdo_id', 'ID в СДО');
+        yield TextField::new('external_upload_bakalavrmagistr_id', 'ID в бакалавр-магистр')->hideOnIndex();
+        yield NumberField::new('external_upload_sdo_id', 'ID в СДО')->hideOnIndex();
 
 
+        yield FormField::addTab('Реквизиты');
         yield CollectionField::new('requisites')
             ->hideOnIndex()
             ->setColumns('col-12 col-sm-12 col-lg-12')

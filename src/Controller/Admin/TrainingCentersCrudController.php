@@ -46,14 +46,19 @@ class TrainingCentersCrudController extends AbstractCrudController
         yield TextField::new('url', 'URL адрес')
             ->setColumns('col-6 col-sm-6 col-lg-6')
             ->hideOnIndex();
+
+
+        yield NumberField::new('old_id', 'ID в старой системе')
+            ->setColumns('col-3 col-sm-3 col-lg-3')
+            ->hideOnIndex();
         yield TextField::new('external_upload_bakalavrmagistr_id', 'ID в бакалавр-магистр')
-            ->setColumns('col-4 col-sm-4 col-lg-4')
+            ->setColumns('col-3 col-sm-3 col-lg-3')
             ->hideOnIndex();
         yield NumberField::new('site_id', 'ID на сайтах мультидвижка')
-            ->setColumns('col-4 col-sm-4 col-lg-4')
+            ->setColumns('col-3 col-sm-3 col-lg-3')
             ->hideOnIndex();
         yield NumberField::new('external_upload_sdo_id', 'ID в СДО')
-            ->setColumns('col-4 col-sm-4 col-lg-4')
+            ->setColumns('col-3 col-sm-3 col-lg-3')
             ->hideOnIndex();
 
 

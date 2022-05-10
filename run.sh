@@ -1,7 +1,10 @@
 ## Run in CI/CD
-composer update
+
+#composer update
+
 php bin/console doctrine:migrations:migrate --no-interaction
 php bin/console cache:clear
-./vendor/bin/php-cs-fixer fix
-su - metodistam
-yarn run build
+
+npm run build
+
+#./vendor/bin/php-cs-fixer fix

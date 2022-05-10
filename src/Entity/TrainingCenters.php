@@ -15,6 +15,9 @@ class TrainingCenters
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[ORM\Column(type: 'integer')]
+    private $old_id;
+
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $active = false;
 
@@ -56,6 +59,22 @@ class TrainingCenters
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOldId()
+    {
+        return $this->old_id;
+    }
+
+    /**
+     * @param mixed $old_id
+     */
+    public function setOldId($old_id): void
+    {
+        $this->old_id = $old_id;
     }
 
     /**

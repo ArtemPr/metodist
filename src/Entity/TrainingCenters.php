@@ -42,8 +42,8 @@ class TrainingCenters
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'training_centers')]
     private $users;
 
-
     #[ORM\ManyToMany(targetEntity: TrainingCentersRequisites::class, inversedBy: 'trainingCenters', cascade: ['persist'])]
+    #[ORM\OrderBy(['dateAded'=>'DESC'])]
     private $requisites;
 
 

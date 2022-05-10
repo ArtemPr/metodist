@@ -3,4 +3,4 @@ composer update
 php bin/console doctrine:migrations:migrate --no-interaction
 php bin/console cache:clear
 ./vendor/bin/php-cs-fixer fix
-yarn run build
+## yarn run build

@@ -50,16 +50,20 @@ class TrainingCentersCrudController extends AbstractCrudController
         yield NumberField::new('old_id', 'ID в старой системе')
             ->setColumns('col-3 col-sm-3 col-lg-3')
             ->hideOnIndex();
-        yield TextField::new('external_upload_bakalavrmagistr_id', 'ID в бакалавр-магистр')
-            ->setColumns('col-3 col-sm-3 col-lg-3')
-            ->hideOnIndex();
         yield NumberField::new('site_id', 'ID на сайтах мультидвижка')
             ->setColumns('col-3 col-sm-3 col-lg-3')
             ->hideOnIndex();
-        yield NumberField::new('external_upload_sdo_id', 'ID в СДО')
+
+
+        yield TextField::new('external_upload_bakalavrmagistr_id', 'ID в bakalavrmagistr.ru')
+            ->setColumns('col-3 col-sm-3 col-lg-3')
+            ->hideOnIndex();
+        yield NumberField::new('external_upload_sdo_id', 'ID в sdo.gaps.edu.ru:')
             ->setColumns('col-3 col-sm-3 col-lg-3')
             ->hideOnIndex();
 
+        yield AssociationField::new('users', 'Ответственные')
+            ->hideOnIndex();
 
         yield FormField::addTab('Реквизиты');
         yield CollectionField::new('requisites')

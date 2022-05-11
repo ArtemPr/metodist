@@ -49,7 +49,6 @@ class TrainingCenters
     #[ORM\OrderBy(['dateAded'=>'DESC'])]
     private $requisites;
 
-
     public function __construct()
     {
         $this->users = new ArrayCollection();

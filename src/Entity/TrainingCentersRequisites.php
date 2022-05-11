@@ -15,6 +15,9 @@ class TrainingCentersRequisites
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $old_id;
+
     #[ORM\ManyToMany(targetEntity: TrainingCenters::class, mappedBy: 'requisites')]
     private $trainingCenters;
 
@@ -50,6 +53,22 @@ class TrainingCentersRequisites
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOldId()
+    {
+        return $this->old_id;
+    }
+
+    /**
+     * @param mixed $old_id
+     */
+    public function setOldId($old_id): void
+    {
+        $this->old_id = $old_id;
     }
 
     /**

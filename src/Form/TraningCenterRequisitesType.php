@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\TrainingCentersRequisites;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,6 +21,13 @@ class TraningCenterRequisitesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add(
+                'old_id',
+                IntegerType::class,
+                [
+                    'label' => 'Старый ID',
+                ]
+            )
             ->add(
                 'dateAded',
                 DateTimeType::class,

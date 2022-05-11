@@ -28,7 +28,7 @@ class TrainingCentersCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Список учебных центров')
             ->setPageTitle('edit', 'Редактирование учебного центра')
             ->setPageTitle('new', 'Создать учебный центр')
-            ->setDefaultSort(['name' => 'DESC'])
+            ->setDefaultSort(['old_id' => 'DESC'])
             ->setPaginatorPageSize(30)
             ->showEntityActionsInlined();
     }
@@ -44,8 +44,7 @@ class TrainingCentersCrudController extends AbstractCrudController
         yield TextField::new('email', 'Email')
             ->setColumns('col-6 col-sm-6 col-lg-6');
         yield TextField::new('url', 'URL адрес')
-            ->setColumns('col-6 col-sm-6 col-lg-6')
-            ->hideOnIndex();
+            ->setColumns('col-6 col-sm-6 col-lg-6');
 
 
         yield NumberField::new('old_id', 'ID в старой системе')

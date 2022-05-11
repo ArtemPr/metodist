@@ -28,7 +28,7 @@ class TrainingCentersCrudController extends AbstractCrudController
             ->setPageTitle('index', 'Список учебных центров')
             ->setPageTitle('edit', 'Редактирование учебного центра')
             ->setPageTitle('new', 'Создать учебный центр')
-            ->setDefaultSort(['old_id' => 'DESC'])
+            ->setDefaultSort(['old_id' => 'ASC'])
             ->setPaginatorPageSize(30)
             ->showEntityActionsInlined();
     }
@@ -46,6 +46,12 @@ class TrainingCentersCrudController extends AbstractCrudController
         yield TextField::new('url', 'URL адрес')
             ->setColumns('col-6 col-sm-6 col-lg-6');
 
+        yield AssociationField::new('document', 'Формат файлов')
+            ->setColumns('col-6 col-sm-6 col-lg-6')
+            ->hideOnIndex();
+        yield AssociationField::new('users', 'Ответственные')
+            ->setColumns('col-6 col-sm-6 col-lg-6')
+            ->hideOnIndex()->setDisabled();
 
         yield NumberField::new('old_id', 'ID в старой системе')
             ->setColumns('col-3 col-sm-3 col-lg-3')
@@ -61,9 +67,6 @@ class TrainingCentersCrudController extends AbstractCrudController
         yield NumberField::new('external_upload_sdo_id', 'ID в sdo.gaps.edu.ru:')
             ->setColumns('col-3 col-sm-3 col-lg-3')
             ->hideOnIndex();
-
-        yield AssociationField::new('users', 'Ответственные')
-            ->hideOnIndex()->setDisabled();
 
         yield FormField::addTab('Реквизиты');
         yield CollectionField::new('requisites')

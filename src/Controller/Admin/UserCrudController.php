@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Roles;
 use App\Entity\User;
+use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -14,6 +16,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
 {
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+
+    }
+
     public static function getEntityFqcn(): string
     {
         return User::class;
@@ -43,10 +50,7 @@ class UserCrudController extends AbstractCrudController
             ->allowMultipleChoices()
             ->autocomplete()
             ->setChoices(
-                [
-                    'Администратор системы' => 'ROLE_ADMIN',
-                    'Методист' => 'ROLE_USER',
-                ]
+                $this->setRoles()
             );
 
 
@@ -85,5 +89,14 @@ class UserCrudController extends AbstractCrudController
             ->update(Crud::PAGE_NEW, Action::SAVE_AND_RETURN, function (Action $action) {
                 return $action->setIcon('fa fa-check')->setLabel('Сохранить изменения и вернуться к списку');
             });
+    }
+
+    private function setRoles()
+    {
+        $x = $this->doctrine->getRepository(Roles::class)->findBy([], ['name' => 'ASC']);
+        foreach ($x as $value) {
+            $type_list[$value->getName()] = $value->getRolesAlt();
+        }
+        return $type_list;
     }
 }

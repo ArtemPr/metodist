@@ -49,6 +49,9 @@ class TrainingCenters
     #[ORM\OrderBy(['dateAded'=>'DESC'])]
     private $requisites;
 
+    #[ORM\ManyToOne(targetEntity: Document::class, inversedBy: 'trainingCenters')]
+    private $document;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -257,4 +260,17 @@ class TrainingCenters
     {
         return $this->name;
     }
+
+    public function getDocument(): ?Document
+    {
+        return $this->document;
+    }
+
+    public function setDocument(?Document $document): self
+    {
+        $this->document = $document;
+
+        return $this;
+    }
+
 }

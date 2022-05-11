@@ -63,7 +63,7 @@ class TrainingCentersCrudController extends AbstractCrudController
             ->hideOnIndex();
 
         yield AssociationField::new('users', 'Ответственные')
-            ->hideOnIndex();
+            ->hideOnIndex()->setDisabled();
 
         yield FormField::addTab('Реквизиты');
         yield CollectionField::new('requisites')

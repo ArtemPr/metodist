@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -47,7 +48,22 @@ class UserCrudController extends AbstractCrudController
                 ]
             );
 
+
         yield FormField::addTab('Привилегии');
+
+        yield FormField::addPanel('Привязки');
+        yield AssociationField::new('training_centers', 'Учебные центры пользователя')
+            ->setColumns('col-6 col-sm-6 col-lg-6')
+            ->hideOnIndex();
+        yield AssociationField::new('disciplines', 'Дисциплины пользователя')
+            ->setColumns('col-6 col-sm-6 col-lg-6')
+            ->hideOnIndex();
+        yield AssociationField::new('module', 'Модули пользователя')
+            ->setColumns('col-6 col-sm-6 col-lg-6')
+            ->hideOnIndex();
+        yield AssociationField::new('program', 'Программы пользователя')
+            ->setColumns('col-6 col-sm-6 col-lg-6')
+            ->hideOnIndex();
     }
 
     public function configureActions(Actions $actions): Actions

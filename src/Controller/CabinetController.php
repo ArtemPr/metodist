@@ -2,16 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CabinetController extends AbstractController
+class CabinetController extends BaseController
 {
     #[Route('/cabinet', name: 'app_cabinet')]
     public function index(): Response
     {
-        return $this->render('cabinet/index.html.twig', [
+        return $this->baseRender('cabinet/index.html.twig', [
             'controller_name' => 'app_cabinet',
         ]);
     }

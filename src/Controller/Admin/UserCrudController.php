@@ -38,6 +38,7 @@ class UserCrudController extends AbstractCrudController
         yield TextField::new('passwordNew', 'Новый пароль')
             ->hideOnIndex()
             ->setHelp('Для смены пароля либо оставьте пустым');
+
         yield ChoiceField::new('roles', 'Привилегии')
             ->allowMultipleChoices()
             ->autocomplete()

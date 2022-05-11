@@ -47,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $name;
 
+    #[ORM\Column(type: 'json', nullable: true)]
+    private $permissions;
+
     public function __construct()
     {
         $this->training_centers = new ArrayCollection();
@@ -292,6 +295,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getPermissions()
+    {
+        return $this->permissions;
+    }
+
+    public function setPermissions($permissions): void
+    {
+        $this->permissions = $permissions;
     }
 
     public function __toString()

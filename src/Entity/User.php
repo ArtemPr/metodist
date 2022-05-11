@@ -47,9 +47,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $name;
 
-    #[ORM\Column(type: 'json', nullable: true)]
-    private $permissions;
-
     public function __construct()
     {
         $this->training_centers = new ArrayCollection();
@@ -127,21 +124,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
-    }
-
-    public function __get(string $param): string
-    {
-        return '';
-    }
-
-    /**
-     * @param $value
-     */
-    public function __set(string $param, $value)
-    {
-        if (!empty($param) && 'passwordNew' == $param && !empty($value)) {
-            $this->password = password_hash($value, PASSWORD_DEFAULT);
-        }
     }
 
     /**
@@ -297,18 +279,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPermissions()
-    {
-        return $this->permissions;
-    }
-
-    public function setPermissions($permissions): void
-    {
-        $this->permissions = $permissions;
-    }
-
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function __get(string $param): string
+    {
+        return '';
+    }
+
+    public function __set(string $param, $value)
+    {
+        if (!empty($param) && 'passwordNew' == $param && !empty($value)) {
+            $this->password = password_hash($value, PASSWORD_DEFAULT);
+        }
     }
 }

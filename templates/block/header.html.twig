@@ -8,7 +8,8 @@
                 <img src="{{ asset('assets/images/logo.svg') }}" width="110" height="32" alt="СПРУТ" class="navbar-brand-image">
             </a>
         </h1>
-        <div class="navbar-nav flex-row order-md-last">
+        {% include "block/navbar.html.twig" %}
+        <div class="navbar-nav flex-row">
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Открыть меню пользователя">
                     <span class="avatar avatar-sm" style="background-image: url({{ asset('assets/images/user-128.svg') }})"></span>
@@ -28,4 +29,3 @@
         </div>
     </div>
 </header>
-{% include "block/navbar.html.twig" %}

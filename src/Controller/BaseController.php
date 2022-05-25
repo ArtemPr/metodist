@@ -13,8 +13,6 @@ class BaseController extends AbstractController
             'roles' => $user->getRoles(),
         ];
 
-        dd($data['user']);
-
         return $this->render($tpl, $data);
     }
 }
